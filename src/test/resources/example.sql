@@ -25,3 +25,4 @@ CREATE TABLE `test` (
 -- Records of test
 -- ----------------------------
 INSERT INTO `test` VALUES ('1', 'name', 'testName', '2018-10-01 10:00:00');
+INSERT INTO `test` VALUES ('2', 'java', 'mybatis', '2018-10-02 10:00:00');

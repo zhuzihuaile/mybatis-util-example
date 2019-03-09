@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.collect.Lists;
 import com.zhuzi.ApplicationTests;
 import com.zhuzi.example.mybatis.bean.TestBean;
+import com.zhuzi.mybatis.constant.SortAndLimitConstant;
+import com.zhuzi.mybatis.constant.SortAndLimitConstant.Order;
 import com.zhuzi.mybatis.core.query.Criteria;
 import com.zhuzi.mybatis.core.query.Query;
 import com.zhuzi.mybatis.template.MybatisTemplate;
@@ -105,6 +107,20 @@ public class TemplateTest extends ApplicationTests{
 		List<TestBean> beans = template.select(map, TestBean.class);
 		System.out.println(beans);
 		assertNotNull(beans);
+	}
+	
+	@Test
+	public void selectOneByOrder() {
+		TestBean bean = template.selectOne(TestBean.class, SortAndLimitConstant.Sort("id", Order.DESC));
+		assertNotNull(bean);
+		assertNotNull(bean.getId());
+	}
+	
+	@Test
+	public void selectOneByOrder2() {
+		TestBean bean = template.selectOne(TestBean.class, SortAndLimitConstant.Sort("id", null));
+		assertNotNull(bean);
+		assertNotNull(bean.getId());
 	}
 	
 }
