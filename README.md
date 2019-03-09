@@ -1,7 +1,7 @@
 示例说明
 ==
-本工程是一个标准的spring boot工程，配置信息在src/main/resources/application.yml文件中
-运行示例在src/test/java文件夹的TemplateTest
+* 本工程是一个标准的spring boot工程，配置信息在src/main/resources/application.yml文件中
+* 运行示例在src/test/java文件夹的TemplateTest
 
 运行说明
 ==
