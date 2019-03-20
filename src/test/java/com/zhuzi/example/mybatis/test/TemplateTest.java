@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.zhuzi.ApplicationTests;
 import com.zhuzi.example.mybatis.bean.TestBean;
+import com.zhuzi.mybatis.constant.MybatisXmlKeyConstant;
 import com.zhuzi.mybatis.constant.SortAndLimitConstant;
 import com.zhuzi.mybatis.constant.SortAndLimitConstant.Order;
 import com.zhuzi.mybatis.core.query.Criteria;
 import com.zhuzi.mybatis.core.query.Query;
 import com.zhuzi.mybatis.template.MybatisTemplate;
+import com.zhuzi.mybatis.util.ClassToMapUtil;
 
 public class TemplateTest extends ApplicationTests{
 
@@ -123,4 +126,32 @@ public class TemplateTest extends ApplicationTests{
 		assertNotNull(bean.getId());
 	}
 	
+	@Test
+	public void selectInteger() {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put(MybatisXmlKeyConstant.TABLE_SELECT_FIELD.getName(), "id");
+		map.putAll(ClassToMapUtil.getTableMap(TestBean.class));
+		List<Integer> list = template.select(map, Integer.class);
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void selectString() {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put(MybatisXmlKeyConstant.TABLE_SELECT_FIELD.getName(), "name");
+		map.putAll(ClassToMapUtil.getTableMap(TestBean.class));
+		List<String> list = template.select(map, String.class);
+		System.out.println(list);
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void selectOneString() {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put(MybatisXmlKeyConstant.TABLE_SELECT_FIELD.getName(), "name");
+		map.putAll(ClassToMapUtil.getTableMap(TestBean.class));
+		String str = template.selectOne(map, String.class);
+		System.out.println(str);
+		assertNotNull(str);
+	}
 }
