@@ -154,4 +154,13 @@ public class TemplateTest extends ApplicationTests{
 		System.out.println(str);
 		assertNotNull(str);
 	}
+	
+	@Test
+	public void selectByObject() {
+		TestBeanQuery query = new TestBeanQuery();
+		query.setId(Lists.newArrayList(1,2,3,4));
+		List<TestBean> beans = template.select(query, null, TestBean.class);
+		System.out.println(beans);
+		assertNotNull(beans);
+	}
 }
