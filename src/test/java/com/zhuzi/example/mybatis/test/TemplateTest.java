@@ -158,7 +158,8 @@ public class TemplateTest extends ApplicationTests{
 	@Test
 	public void selectByObject() {
 		TestBeanQuery query = new TestBeanQuery();
-		query.setId(Lists.newArrayList(1,2,3,4));
+		query.setIdList(Lists.newArrayList(1,2,3,4));
+		query.setName("test");
 		List<TestBean> beans = template.select(query, null, TestBean.class);
 		System.out.println(beans);
 		assertNotNull(beans);
