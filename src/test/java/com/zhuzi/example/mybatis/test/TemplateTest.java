@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
 import com.zhuzi.ApplicationTests;
+import com.zhuzi.example.mybatis.bean.Person;
 import com.zhuzi.example.mybatis.bean.TestBean;
 import com.zhuzi.mybatis.constant.MybatisXmlKeyConstant;
 import com.zhuzi.mybatis.constant.SortAndLimitConstant;
@@ -164,4 +166,25 @@ public class TemplateTest extends ApplicationTests{
 		System.out.println(beans);
 		assertNotNull(beans);
 	}
+	
+	@Test
+	@Transactional
+	public void insertOneByHardler() {
+		TestBean bean = new TestBean();
+		bean.setName("name");
+		bean.setTestName("testName");
+		bean.setCreateTime(new Date());
+		bean.setPerson(new Person(1L, "person test"));
+		assertTrue(template.insert(bean));
+		assertNotNull(bean.getId());
+	}
+	
+	@Test
+	public void selectByHardler() {
+		Query query = new Query();
+		query.addCriteria(Criteria.gte("id", 1));
+		List<TestBean> beans = template.select(query.getWhereMap(), TestBean.class);
+		assertNotNull(beans);
+	}
+	
 }

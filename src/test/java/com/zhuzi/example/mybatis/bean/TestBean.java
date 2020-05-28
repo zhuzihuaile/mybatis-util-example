@@ -2,6 +2,8 @@ package com.zhuzi.example.mybatis.bean;
 
 import java.util.Date;
 
+import com.zhuzi.example.mybatis.PersonFieldAnalyzeHandler;
+import com.zhuzi.mybatis.annotation.FieldAnalyzeHandler;
 import com.zhuzi.mybatis.annotation.GeneratedValue;
 import com.zhuzi.mybatis.annotation.TableName;
 
@@ -12,6 +14,9 @@ public class TestBean {
 	private String name;
 	private String testName;
 	private Date createTime;
+	
+	@FieldAnalyzeHandler(handler = PersonFieldAnalyzeHandler.class)
+	private Person person;
 	public Integer getId() {
 		return id;
 	}
@@ -39,6 +44,12 @@ public class TestBean {
 	@Override
 	public String toString() {
 		return "TestBean [id=" + id + ", name=" + name + ", testName=" + testName + ", createTime=" + createTime + "]";
+	}
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 	
 }
