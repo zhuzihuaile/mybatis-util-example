@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.gson.Gson;
 import com.zhuzi.ApplicationTests;
 import com.zhuzi.example.mybatis.bean.Person;
 import com.zhuzi.example.mybatis.bean.TestBean;
@@ -26,6 +25,7 @@ import com.zhuzi.mybatis.core.query.Query;
 import com.zhuzi.mybatis.template.MybatisTemplate;
 import com.zhuzi.mybatis.util.ClassToMapUtil;
 
+/** 测试用例 */
 public class TemplateTest extends ApplicationTests{
 
 	@Autowired
